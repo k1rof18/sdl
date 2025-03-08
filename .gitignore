@@ -1,0 +1,40 @@
+# Haskell関連
+dist
+dist-*
+cabal-dev
+*.o
+*.hi
+*.hie
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+.hpc
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+*.prof
+*.aux
+*.hp
+*.eventlog
+.stack-work/
+cabal.project.local
+cabal.project.local~
+.HTF/
+.ghc.environment.*
+
+# Stack関連
+.stack-work/
+
+# エディタ/IDE関連
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS関連
+.DS_Store
+Thumbs.db
+
+# その他
+*.log
