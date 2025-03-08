@@ -1,2 +1,2 @@
 run:
-	cabal build && stack build && stack run
+	cabal build && cabal run
