@@ -5,11 +5,17 @@ import Domain.Recruit (RecruitId (..))
 import Gateway.RecruitGateway (RecruitGateway (..), runRecruitGateway)
 import UseCase.GetRecruit (exec)
 
-main :: IO ()
-main = do
-  print $ RecruitId "1"
+getRecruit recruitId = do
+  print $ RecruitId recruitId
   let gateway = runRecruitGateway
-  result <- gateway $ exec (RecruitId "1")
+  result <- gateway $ exec (RecruitId recruitId)
   case result of
     Just recruit -> liftIO $ putStrLn $ "Found recruit: " ++ show recruit
     Nothing -> liftIO $ putStrLn "Recruit not found"
+  
+
+main :: IO ()
+main = do
+  print $ "========================"
+  getRecruit "1"
+  getRecruit "2"
