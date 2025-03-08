@@ -3,7 +3,9 @@ module Domain.Recruit where
 newtype RecruitId = RecruitId String
   deriving (Show, Eq, Ord)
 
-data Skill = Haskell | Clojure | Go | Ruby | TypeScript deriving (Enum, Bounded, Show)
+data Skill = Haskell | Clojure | Go | Ruby | TypeScript
+  deriving (Enum, Bounded, Show, Eq)
+
 
 data Recruit = Recruit
   { recruitId :: RecruitId,
@@ -11,4 +13,4 @@ data Recruit = Recruit
     description :: String,
     skills :: [Skill]
   }
-  deriving (Show)
+  deriving (Show, Eq)
