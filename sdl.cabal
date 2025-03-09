@@ -19,6 +19,7 @@ library
   hs-source-dirs:      src
   exposed-modules:
     Driver.DB
+    Domain.Client
     Domain.Recruit
     Port.RecruitPort
     Gateway.RecruitGateway
