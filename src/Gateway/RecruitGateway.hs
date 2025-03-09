@@ -1,10 +1,10 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
 module Gateway.RecruitGateway where
 
-import Control.Monad.IO.Class (MonadIO, liftIO)
-import Domain.Recruit (Recruit (..), RecruitId (..), Skill (..))
+import Control.Monad.IO.Class (MonadIO)
+import Domain.Recruit (Recruit (..), RecruitId (..))
 import Port.RecruitPort (RecruitPort (..))
 
 newtype RecruitGateway m a = RecruitGateway {runRecruitGateway :: m a}
@@ -18,8 +18,6 @@ instance (MonadIO m) => RecruitPort (RecruitGateway m) where
           Just $
             Recruit
               { recruitId = RecruitId "1",
-                title = "Software Engineer",
-                description = "We are looking for a FP software engineer",
-                skills = [Haskell, Clojure]
+                title = "Software Engineer"
               }
       else return Nothing

@@ -1,22 +1,28 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
 module UseCaseTest.GetRecruitSpec (spec) where
 
-import Test.Hspec
-import UseCase.GetRecruit (exec)
-import Domain.Recruit (Recruit(..), RecruitId(..), Skill(..))
-import Port.RecruitPort (RecruitPort(..))
 import Control.Monad.IO.Class (MonadIO, liftIO)
 import Data.IORef
+import Domain.Recruit (Recruit (..), RecruitId (..))
+import Port.RecruitPort (RecruitPort (..))
+import Test.Hspec
+import UseCase.GetRecruit (exec)
 
-newtype MockRecruitGateway a = MockRecruitGateway { runMockRecruitGateway :: IO a }
+newtype MockRecruitGateway a = MockRecruitGateway {runMockRecruitGateway :: IO a}
   deriving (Functor, Applicative, Monad, MonadIO)
 
 instance RecruitPort MockRecruitGateway where
   find recruitId = MockRecruitGateway $ do
     if recruitId == RecruitId "1"
-      then return $ Just $ Recruit (RecruitId "1") "Software Engineer" "We are looking for a FP software engineer" [Haskell, Clojure]
+      then
+        return $
+          Just $
+            Recruit
+              { recruitId = RecruitId "1",
+                title = "Software Engineer"
+              }
       else return Nothing
 
 spec :: Spec
@@ -25,7 +31,7 @@ spec = do
     it "should return a recruit when it exists" $ do
       let result = runMockRecruitGateway $ exec (RecruitId "1")
       recruit <- result
-      recruit `shouldBe` Just (Recruit (RecruitId "1") "Software Engineer" "We are looking for a FP software engineer" [Haskell, Clojure])
+      recruit `shouldBe` Just (Recruit (RecruitId "1") "Software Engineer")
 
     it "should return Nothing when recruit doesn't exist" $ do
       let result = runMockRecruitGateway $ exec (RecruitId "non-exist")
@@ -34,16 +40,16 @@ spec = do
 
     it "should call find method of RecruitPort" $ do
       callCount <- newIORef 0
-      
+
       let mockFind recruitId = MockRecruitGateway $ do
-            liftIO $ modifyIORef callCount (+1)
+            liftIO $ modifyIORef callCount (+ 1)
             if recruitId == RecruitId "1"
-              then return $ Just $ Recruit (RecruitId "1") "Software Engineer" "We are looking for a FP software engineer" [Haskell, Clojure]
+              then return $ Just $ Recruit (RecruitId "1") "Software Engineer"
               else return Nothing
-      
-      let mockGateway = MockRecruitGateway { runMockRecruitGateway = runMockRecruitGateway $ mockFind (RecruitId "1") }
-      
+
+      let mockGateway = MockRecruitGateway {runMockRecruitGateway = runMockRecruitGateway $ mockFind (RecruitId "1")}
+
       _ <- runMockRecruitGateway mockGateway
-      
+
       count <- readIORef callCount
       count `shouldBe` 1

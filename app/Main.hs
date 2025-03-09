@@ -12,7 +12,6 @@ getRecruit recruitId = do
   case result of
     Just recruit -> liftIO $ putStrLn $ "Found recruit: " ++ show recruit
     Nothing -> liftIO $ putStrLn "Recruit not found"
-  
 
 main :: IO ()
 main = do
