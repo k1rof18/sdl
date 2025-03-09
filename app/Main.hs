@@ -2,6 +2,7 @@ module Main (main) where
 
 import Control.Monad.IO.Class (liftIO)
 import Domain.Recruit (RecruitId (..))
+import Driver.RecruitDriver (rrr)
 import Gateway.RecruitGateway (RecruitGateway (..), runRecruitGateway)
 import UseCase.GetRecruit (exec)
 
@@ -15,6 +16,8 @@ getRecruit recruitId = do
 
 main :: IO ()
 main = do
-  print $ "========================"
-  getRecruit "1"
-  getRecruit "2"
+  rrr
+
+-- print $ "========================"
+-- getRecruit "1"
+-- getRecruit "2"

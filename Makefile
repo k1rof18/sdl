@@ -1,8 +1,8 @@
 r:
-	cabal build && cabal run
+	cabal v2-build --jobs=4 && cabal run
 
 t:
-	cabal clean & cabal build & cabal test
+	cabal clean & cabal v2-build --jobs=4 & cabal test
 
 te:
 	cabal test
