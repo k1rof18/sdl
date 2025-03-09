@@ -30,12 +30,18 @@ library
     Gateway.ProjectGateway
     UseCase.ListProjects
     Driver.ProjectDriver
+    Domain.ProjectWorker
+    Port.ProjectWorkerPort
+    Gateway.ProjectWorkerGateway
+    UseCase.ListProjectWorkers
+    Driver.ProjectWorkerDriver
   build-depends:
     base >= 4.7 && < 5
     , mtl
     , postgresql-simple
     , uuid
     , uuid-orphans
+    , time
   default-language:    Haskell2010
   ghc-options:         -Wall
                        -Wcompat

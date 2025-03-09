@@ -21,6 +21,22 @@ CREATE TABLE projects (
     PRIMARY KEY
 );
 
+CREATE TABLE workers (
+  worker_id UUID PRIMARY KEY
+);
+
+CREATE TABLE project_workers (
+  project_worker_id UUID PRIMARY KEY,
+  worker_id UUID REFERENCES workers(worker_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  recruit_id UUID REFERENCES projects(recruit_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  estimated_end_date DATE,
+  UNIQUE (worker_id, recruit_id)
+);
+
 -- 以下はサンプルデータ
 INSERT INTO clients (client_id) VALUES
 ('CF71705D-DE27-40FE-9181-E190E0A65EB6'),
@@ -53,3 +69,22 @@ INSERT INTO projects (recruit_id) VALUES
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b47'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b46'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b45');
+
+INSERT INTO workers (worker_id) VALUES
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4e'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4d'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4c'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4b'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4a'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b49'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b48'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b47'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b46'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b45');
+
+INSERT INTO project_workers (project_worker_id, worker_id, recruit_id, estimated_end_date) VALUES
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f', '2021-12-31'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4e', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4e', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4e', '2021-12-31'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4d', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4d', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4d', '2021-12-31'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4c', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4c', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4c', '2021-12-31');
