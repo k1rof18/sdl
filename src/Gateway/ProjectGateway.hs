@@ -5,6 +5,7 @@ module Gateway.ProjectGateway where
 
 import Control.Monad.IO.Class (MonadIO, liftIO)
 import Data.UUID (toString)
+import Domain.Client (ClientId (..))
 import Domain.Project (Project (..), ProjectId (..))
 import Driver.ProjectDriver (ProjectEntity (..), list)
 import Port.ProjectPort (ProjectPort (..))
@@ -20,5 +21,6 @@ instance (MonadIO m) => ProjectPort (ProjectGateway m) where
       toDomain value =
         Project
           { projectId = ProjectId $ toString (Driver.ProjectDriver.recruit_id value),
-            Domain.Project.title = Driver.ProjectDriver.title value
+            Domain.Project.title = Driver.ProjectDriver.title value,
+            clientId = ClientId $ toString (Driver.ProjectDriver.client_id value)
           }

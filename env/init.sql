@@ -47,9 +47,9 @@ INSERT INTO projects (recruit_id) VALUES
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4b'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4a');
 
--- INSERT INTO comps (recruit_id) VALUES
--- ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b49'),
--- ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b48'),
--- ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b47'),
--- ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b46'),
--- ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b45');
+INSERT INTO projects (recruit_id) VALUES
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b49'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b48'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b47'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b46'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b45');
