@@ -43,8 +43,10 @@ library
 executable sdl
   hs-source-dirs:      app
   main-is:             Main.hs
-  build-depends:       base
-                     , sdl
+  build-depends:
+    base
+    , sdl
+    , postgresql-simple
   default-language:    Haskell2010
   ghc-options:         -Wall
                        -Wcompat

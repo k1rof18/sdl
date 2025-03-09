@@ -2,14 +2,12 @@
 
 module Driver.RecruitDriver where
 
+import Data.Maybe (listToMaybe)
 import Data.UUID (UUID)
 import Data.UUID.Orphans ()
 import Database.PostgreSQL.Simple
 import Database.PostgreSQL.Simple.FromRow
 
--- `FromField UUID` インスタンスを提供
-
--- ユーザーデータを表す型
 data Recruit = Recruit {recruit_id :: UUID, title :: String}
   deriving (Show)
 
@@ -17,22 +15,8 @@ data Recruit = Recruit {recruit_id :: UUID, title :: String}
 instance FromRow Recruit where
   fromRow = Recruit <$> field <*> field
 
-rrr = do
-  -- PostgreSQL に接続
-  conn <-
-    connect
-      defaultConnectInfo
-        { connectHost = "localhost",
-          connectDatabase = "mydb",
-          connectUser = "myuser",
-          connectPassword = "mypassword"
-        }
-
-  -- `recruits` テーブルのデータを取得
-  recruits <- query_ conn "SELECT recruit_id, title FROM recruits" :: IO [Recruit]
-
-  -- 結果を出力
-  mapM_ print recruits
-
-  -- 接続を閉じる
-  close conn
+getById :: Connection -> String -> IO (Maybe Recruit)
+getById conn id = do
+  -- recruit_id によってデータを検索し、結果を Maybe 型で返す
+  result <- query conn "SELECT recruit_id, title FROM recruits WHERE recruit_id = ?" (Only id) :: IO [Recruit]
+  return $ listToMaybe result -- 1件だけ取得するため Maybe 型に変換
