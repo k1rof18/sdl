@@ -18,12 +18,17 @@ extra-source-files:  README.md
 library
   hs-source-dirs:      src
   exposed-modules:
+    Driver.DB
     Domain.Recruit
     Port.RecruitPort
     Gateway.RecruitGateway
     UseCase.GetRecruit
     Driver.RecruitDriver
-    Driver.DB
+    Domain.Project
+    Port.ProjectPort
+    Gateway.ProjectGateway
+    UseCase.ListProjects
+    Driver.ProjectDriver
   build-depends:
     base >= 4.7 && < 5
     , mtl
