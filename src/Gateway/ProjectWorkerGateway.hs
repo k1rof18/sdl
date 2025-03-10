@@ -8,6 +8,7 @@ import Data.UUID (toString)
 import Domain.Client (ClientId (..))
 import Domain.Project (ProjectId (..))
 import Domain.ProjectWorker (ProjectWorker (..), ProjectWorkerId (..), WorkerId (..))
+import Domain.Recruit (RecruitId (..))
 import Driver.ProjectDriver (ProjectEntity (client_id))
 import Driver.ProjectWorkerDriver (ProjectWorkerEntity (..), list)
 import Port.ProjectWorkerPort (ProjectWorkerPort (..))
@@ -16,8 +17,8 @@ newtype ProjectWorkerGateway m a = ProjectWorkerGateway {runProjectWorkerGateway
   deriving (Functor, Applicative, Monad, MonadIO)
 
 instance (MonadIO m) => ProjectWorkerPort (ProjectWorkerGateway m) where
-  list (ClientId client_id) = ProjectWorkerGateway $ do
-    recruit <- liftIO $ Driver.ProjectWorkerDriver.list client_id
+  list (ClientId client_id) (RecruitId recruit_id) = ProjectWorkerGateway $ do
+    recruit <- liftIO $ Driver.ProjectWorkerDriver.list client_id recruit_id
     return $ map toDomain recruit
     where
       toDomain value =
