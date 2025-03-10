@@ -9,7 +9,7 @@ import Database.PostgreSQL.Simple
 import Database.PostgreSQL.Simple.FromRow
 import Driver.DB (conn)
 
-data ProjectEntity = ProjectEntity {recruit_id :: UUID, title :: String, client_id :: UUID}
+data ProjectEntity = ProjectEntity {project_id :: UUID, title :: String, client_id :: UUID}
   deriving (Show)
 
 instance FromRow ProjectEntity where
@@ -18,5 +18,5 @@ instance FromRow ProjectEntity where
 list :: IO [ProjectEntity]
 list = do
   connection <- conn
-  result <- query_ connection "SELECT p.recruit_id, r.title, r.client_id FROM projects p JOIN recruits r ON p.recruit_id = r.recruit_id"
+  result <- query_ connection "SELECT p.project_id, r.title, r.client_id FROM projects p JOIN recruits r ON p.project_id = r.recruit_id"
   return result

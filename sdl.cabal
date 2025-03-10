@@ -30,11 +30,11 @@ library
     Gateway.ProjectGateway
     UseCase.ListProjects
     Driver.ProjectDriver
-    Domain.ProjectWorker
-    Port.ProjectWorkerPort
-    Gateway.ProjectWorkerGateway
-    UseCase.ListProjectWorkers
-    Driver.ProjectWorkerDriver
+    Domain.ProjectApplicant
+    Port.ProjectApplicantPort
+    Gateway.ProjectApplicantGateway
+    UseCase.ListProjectApplicants
+    Driver.ProjectApplicantDriver
   build-depends:
     base >= 4.7 && < 5
     , mtl

@@ -20,7 +20,7 @@ instance (MonadIO m) => ProjectPort (ProjectGateway m) where
     where
       toDomain value =
         Project
-          { projectId = ProjectId $ toString (Driver.ProjectDriver.recruit_id value),
+          { projectId = ProjectId $ toString (Driver.ProjectDriver.project_id value),
             Domain.Project.title = Driver.ProjectDriver.title value,
             clientId = ClientId $ toString (Driver.ProjectDriver.client_id value)
           }

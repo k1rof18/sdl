@@ -1,16 +1,16 @@
-module Domain.ProjectWorker where
+module Domain.ProjectApplicant where
 
 import Data.Time.Calendar (Day)
 import Domain.Project (ProjectId)
 
-newtype ProjectWorkerId = ProjectWorkerId String
+newtype ProjectApplicantId = ProjectApplicantId String
   deriving (Show, Eq, Ord)
 
 newtype WorkerId = WorkerId String
   deriving (Show, Eq, Ord)
 
-data ProjectWorker = ProjectWorker
-  { projectWorkerId :: ProjectWorkerId,
+data ProjectApplicant = ProjectApplicant
+  { projectApplicantId :: ProjectApplicantId,
     projectId :: ProjectId,
     workerId :: WorkerId,
     estimatedEndDate :: Day
