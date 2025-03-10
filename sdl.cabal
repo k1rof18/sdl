@@ -25,16 +25,23 @@ library
     Gateway.RecruitGateway
     UseCase.GetRecruit
     Driver.RecruitDriver
+
     Domain.Project
     Port.ProjectPort
     Gateway.ProjectGateway
     UseCase.ListProjects
     Driver.ProjectDriver
+
     Domain.ProjectApplicant
     Port.ProjectApplicantPort
     Gateway.ProjectApplicantGateway
     UseCase.ListProjectApplicants
     Driver.ProjectApplicantDriver
+
+    Port.FirstStageProjectApplicantPort
+    Gateway.FirstStageProjectApplicantGateway
+    UseCase.ListFirstStageProjectApplicants
+    Driver.FirstStageProjectApplicantDriver
   build-depends:
     base >= 4.7 && < 5
     , mtl

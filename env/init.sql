@@ -25,6 +25,14 @@ CREATE TABLE workers (
   worker_id UUID PRIMARY KEY
 );
 
+CREATE TABLE worker_privates (
+  worker_id UUID PRIMARY KEY REFERENCES workers(worker_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  name TEXT NOT NULL,
+  birth_date DATE
+);
+
 CREATE TABLE project_applicants (
   project_applicant_id UUID PRIMARY KEY,
   applicant_id UUID REFERENCES workers(worker_id)
@@ -35,6 +43,18 @@ CREATE TABLE project_applicants (
     ON UPDATE CASCADE,
   estimated_end_date DATE,
   UNIQUE (applicant_id, project_id)
+);
+
+CREATE TABLE first_stage_projects (
+  project_id UUID PRIMARY KEY REFERENCES projects(project_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+CREATE TABLE first_stage_project_applicants (
+  project_applicant_id UUID PRIMARY KEY REFERENCES project_applicants(project_applicant_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );
 
 -- 以下はサンプルデータ
@@ -88,3 +108,21 @@ INSERT INTO project_applicants (project_applicant_id, applicant_id, project_id, 
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4e', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4e', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4e', '2021-12-31'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4d', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4d', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4d', '2021-12-31'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4c', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4c', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4c', '2021-12-31');
+
+INSERT INTO first_stage_projects (project_id) VALUES
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f');
+
+INSERT INTO first_stage_project_applicants (project_applicant_id) VALUES
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f');
+
+INSERT INTO worker_privates (worker_id, name, birth_date) VALUES
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f', 'Alice', '1990-01-01'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4e', 'Bob', '1990-01-02'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4d', 'Charlie', '1990-01-03'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4c', 'David', '1990-01-04'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4b', 'Eve', '1990-01-05'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4a', 'Frank', '1990-01-06'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b49', 'Grace', '1990-01-07'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b48', 'Hank', '1990-01-08'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b47', 'Ivy', '1990-01-09'),
+('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b46', 'Jack', '1990-01-10');

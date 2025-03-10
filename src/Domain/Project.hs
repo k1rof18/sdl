@@ -11,3 +11,6 @@ data Project = Project
     clientId :: ClientId
   }
   deriving (Show, Eq)
+
+newtype FirstStageProject = FirstStageProject Project
+  deriving (Show, Eq)
