@@ -33,6 +33,13 @@ CREATE TABLE worker_privates (
   birth_date DATE
 );
 
+CREATE TABLE worker_profiles (
+  worker_id UUID PRIMARY KEY REFERENCES workers(worker_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  selfIntroduction TEXT
+);
+
 CREATE TABLE project_applicants (
   project_applicant_id UUID PRIMARY KEY,
   applicant_id UUID REFERENCES workers(worker_id)
@@ -52,6 +59,18 @@ CREATE TABLE first_stage_projects (
 );
 
 CREATE TABLE first_stage_project_applicants (
+  project_applicant_id UUID PRIMARY KEY REFERENCES project_applicants(project_applicant_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+CREATE TABLE second_stage_projects (
+  project_id UUID PRIMARY KEY REFERENCES projects(project_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+CREATE TABLE second_stage_project_applicants (
   project_applicant_id UUID PRIMARY KEY REFERENCES project_applicants(project_applicant_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE

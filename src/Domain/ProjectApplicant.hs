@@ -13,6 +13,11 @@ data PrivateInfo = PrivateInfo
   }
   deriving (Show, Eq)
 
+data Profile = Profile
+  { selfIntroduction :: String
+  }
+  deriving (Show, Eq)
+
 data ProjectApplicant = ProjectApplicant
   { projectApplicantId :: ProjectApplicantId,
     projectId :: ProjectId,
