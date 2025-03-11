@@ -42,6 +42,8 @@ library
     Gateway.FirstStageProjectApplicantGateway
     UseCase.ListFirstStageProjectApplicants
     Driver.FirstStageProjectApplicantDriver
+
+    Domain.Worker
   build-depends:
     base >= 4.7 && < 5
     , mtl
