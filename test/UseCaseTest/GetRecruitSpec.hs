@@ -5,6 +5,7 @@ module UseCaseTest.GetRecruitSpec (spec) where
 
 import Control.Monad.IO.Class (MonadIO, liftIO)
 import Data.IORef
+import Domain.Client (ClientId (ClientId))
 import Domain.Recruit (Recruit (..), RecruitId (..))
 import Port.RecruitPort (RecruitPort (..))
 import Test.Hspec
@@ -21,7 +22,8 @@ instance RecruitPort MockRecruitGateway where
           Just $
             Recruit
               { recruitId = RecruitId "1",
-                title = "Software Engineer"
+                title = "Software Engineer",
+                clientId = ClientId "1"
               }
       else return Nothing
 
@@ -31,7 +33,7 @@ spec = do
     it "should return a recruit when it exists" $ do
       let result = runMockRecruitGateway $ exec (RecruitId "1")
       recruit <- result
-      recruit `shouldBe` Just (Recruit (RecruitId "1") "Software Engineer")
+      recruit `shouldBe` Just (Recruit (RecruitId "1") "Software Engineer" (ClientId "1"))
 
     it "should return Nothing when recruit doesn't exist" $ do
       let result = runMockRecruitGateway $ exec (RecruitId "non-exist")

@@ -50,6 +50,8 @@ library
     Gateway.SecondStageProjectApplicantGateway
     UseCase.ListSecondStageProjectApplicants
     Driver.SecondStageProjectApplicantDriver
+
+    Domain.ApplyStageUser
   build-depends:
     base >= 4.7 && < 5
     , mtl
@@ -95,10 +97,12 @@ test-suite sdl-test
   main-is:             Spec.hs
   other-modules:
     UseCaseTest.GetRecruitSpec
+    DomainTest.ASpec
   build-depends:       base
                      , sdl
                      , hspec
                      , QuickCheck
+                     , time
   build-tool-depends: hspec-discover:hspec-discover
   default-language:    Haskell2010
   ghc-options:         -Wall
