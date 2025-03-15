@@ -70,12 +70,6 @@ CREATE TABLE second_stage_projects (
     ON UPDATE CASCADE
 );
 
-CREATE TABLE second_stage_project_applicants (
-  project_applicant_id UUID PRIMARY KEY REFERENCES project_applicants(project_applicant_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-);
-
 -- 以下はサンプルデータ
 INSERT INTO clients (client_id) VALUES
 ('CF71705D-DE27-40FE-9181-E190E0A65EB6'),
@@ -145,3 +139,20 @@ INSERT INTO worker_privates (worker_id, name, birth_date) VALUES
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b48', 'Hank', '1990-01-08'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b47', 'Ivy', '1990-01-09'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b46', 'Jack', '1990-01-10');
+
+-- CREATE TABLE second_stage_project_applicants (
+--   project_applicant_id UUID PRIMARY KEY REFERENCES project_applicants(project_applicant_id)
+--     ON DELETE CASCADE
+--     ON UPDATE CASCADE
+-- );
+
+CREATE TABLE project_applicant_stage_histories (
+  apply_id UUID PRIMARY KEY
+    REFERENCES project_applicants(project_applicant_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  stage recruit_stage NOT NULL DEFAULT 'apply',
+  staged_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TYPE recruit_stage AS ENUM ('apply', 'first', 'second');

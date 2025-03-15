@@ -31,7 +31,7 @@ list cli_id rec_id = do
     connection
     "SELECT pw.project_applicant_id, pw.applicant_id, pw.project_id, pw.estimated_end_date, wpri.name, wpri.birth_date, wpro.selfintroduction \
     \ FROM project_applicants pw \
-    \ INNER JOIN second_stage_project_applicants fspa ON pw.project_applicant_id = fspa.project_applicant_id \
+    \ INNER JOIN project_applicant_stage_histories pash ON pw.project_applicant_id = pash.apply_id AND pash.stage = 'second' \
     \ INNER JOIN recruits r ON r.recruit_id = pw.project_id \
     \ INNER JOIN worker_privates wpri ON wpri.worker_id = pw.applicant_id \
     \ INNER JOIN worker_profiles wpro ON wpro.worker_id = pw.applicant_id \
