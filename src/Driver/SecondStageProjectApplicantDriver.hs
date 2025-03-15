@@ -28,12 +28,11 @@ list cli_id rec_id = do
   connection <- conn
   query
     connection
-    "SELECT pw.project_applicant_id, pw.applicant_id, pw.project_id, pw.estimated_end_date, wpri.name, wpro.selfintroduction \
+    "SELECT pw.project_applicant_id, pw.applicant_id, pw.project_id, pw.estimated_end_date, u.name, 'xxx' as selfintroduction \
     \ FROM project_applicants pw \
     \ INNER JOIN project_applicant_stage_histories pash ON pw.project_applicant_id = pash.apply_id AND pash.stage = 'second' \
     \ INNER JOIN recruits r ON r.recruit_id = pw.project_id \
-    \ INNER JOIN worker_privates wpri ON wpri.worker_id = pw.applicant_id \
-    \ INNER JOIN worker_profiles wpro ON wpro.worker_id = pw.applicant_id \
+    \ INNER JOIN users u ON u.user_id = pw.applicant_id \
     \ WHERE r.client_id = ? AND pw.project_id = ?"
     (cli_id, rec_id) ::
     IO
