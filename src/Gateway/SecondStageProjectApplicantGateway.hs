@@ -32,15 +32,11 @@ instance (MonadIO m) => SecondStageProjectApplicantPort (SecondStageProjectAppli
               ProjectApplicant
                 { projectApplicantId = ProjectApplicantId $ toString (Driver.SecondStageProjectApplicantDriver.project_applicant_id value),
                   projectId = ProjectId $ toString (Driver.SecondStageProjectApplicantDriver.project_id value),
-                  workerId = WorkerId $ toString (Driver.SecondStageProjectApplicantDriver.worker_id value),
-                  estimatedEndDate = Driver.SecondStageProjectApplicantDriver.estimated_end_date value
+                  workerId = WorkerId $ toString (Driver.SecondStageProjectApplicantDriver.worker_id value)
                 },
             privateInfo =
               PrivateInfo
                 { nickname = Driver.SecondStageProjectApplicantDriver.name value
                 },
-            profile =
-              Profile
-                { selfIntroduction = Driver.SecondStageProjectApplicantDriver.selfintroduction value
-                }
+            profile = Profile "XXX"
           }

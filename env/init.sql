@@ -30,7 +30,6 @@ CREATE TABLE project_applicants (
   project_id UUID REFERENCES projects(project_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  estimated_end_date DATE,
   UNIQUE (applicant_id, project_id)
 );
 

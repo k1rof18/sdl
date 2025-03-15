@@ -22,8 +22,7 @@ data Profile = Profile
 data ProjectApplicant = ProjectApplicant
   { projectApplicantId :: ProjectApplicantId,
     projectId :: ProjectId,
-    workerId :: WorkerId,
-    estimatedEndDate :: Day
+    workerId :: WorkerId
   }
   deriving (Show, Eq)
 

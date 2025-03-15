@@ -30,8 +30,7 @@ instance (MonadIO m) => FirstStageProjectApplicantPort (FirstStageProjectApplica
               ProjectApplicant
                 { projectApplicantId = ProjectApplicantId $ toString (Driver.FirstStageProjectApplicantDriver.project_applicant_id value),
                   projectId = ProjectId $ toString (Driver.FirstStageProjectApplicantDriver.project_id value),
-                  workerId = WorkerId $ toString (Driver.FirstStageProjectApplicantDriver.worker_id value),
-                  estimatedEndDate = Driver.FirstStageProjectApplicantDriver.estimated_end_date value
+                  workerId = WorkerId $ toString (Driver.FirstStageProjectApplicantDriver.worker_id value)
                 },
             privateInfo =
               PrivateInfo
