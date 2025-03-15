@@ -2,11 +2,10 @@
 
 module Domain.ProjectApplicant where
 
-import Data.Time.Calendar (Day)
 import Domain.Project (ProjectId)
 import Domain.Worker (WorkerId)
 
-newtype ProjectApplicantId = ProjectApplicantId String
+newtype ApplyId = ApplyId String
   deriving (Show, Eq, Ord)
 
 data PrivateInfo = PrivateInfo
@@ -20,7 +19,7 @@ data Profile = Profile
   deriving (Show, Eq)
 
 data ProjectApplicant = ProjectApplicant
-  { projectApplicantId :: ProjectApplicantId,
+  { applyId :: ApplyId,
     projectId :: ProjectId,
     workerId :: WorkerId
   }

@@ -10,7 +10,7 @@ import Database.PostgreSQL.Simple.FromRow
 import Driver.DB (conn)
 
 data FirstStageProjectApplicantEntity = FirstStageProjectApplicantEntity
-  { project_applicant_id :: UUID,
+  { apply_id :: UUID,
     worker_id :: UUID,
     project_id :: UUID,
     name :: String
@@ -25,9 +25,9 @@ list cli_id rec_id = do
   connection <- conn
   query
     connection
-    "SELECT pw.project_applicant_id, pw.applicant_id, pw.project_id, u.name \
-    \ FROM project_applicants pw \
-    \ INNER JOIN project_applicant_stage_histories fspa ON pw.project_applicant_id = fspa.apply_id \
+    "SELECT pw.apply_id, pw.applicant_id, pw.project_id, u.name \
+    \ FROM project_applies pw \
+    \ INNER JOIN project_applicant_stage_histories fspa ON pw.apply_id = fspa.apply_id \
     \ INNER JOIN recruits r ON r.recruit_id = pw.project_id \
     \ INNER JOIN users u ON u.user_id = pw.applicant_id \
     \ WHERE r.client_id = ? AND pw.project_id = ?"

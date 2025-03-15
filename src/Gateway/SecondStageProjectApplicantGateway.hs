@@ -9,7 +9,7 @@ import Control.Monad.IO.Class (MonadIO, liftIO)
 import Data.UUID (toString)
 import Domain.Client (ClientId (..))
 import Domain.Project (ProjectId (..))
-import Domain.ProjectApplicant (PrivateInfo (..), Profile (..), ProjectApplicant (..), ProjectApplicantId (..))
+import Domain.ProjectApplicant (ApplyId (..), PrivateInfo (..), Profile (..), ProjectApplicant (..))
 import Domain.SecondStageProjectApplicant (SecondStageProjectApplicant (..))
 import Domain.Worker (WorkerId (..))
 import Driver.SecondStageProjectApplicantDriver (SecondStageProjectApplicantEntity (..), list)
@@ -30,13 +30,13 @@ instance (MonadIO m) => SecondStageProjectApplicantPort (SecondStageProjectAppli
         SecondStageProjectApplicant
           { projectApplicant =
               ProjectApplicant
-                { projectApplicantId = ProjectApplicantId $ toString (Driver.SecondStageProjectApplicantDriver.project_applicant_id value),
-                  projectId = ProjectId $ toString (Driver.SecondStageProjectApplicantDriver.project_id value),
-                  workerId = WorkerId $ toString (Driver.SecondStageProjectApplicantDriver.worker_id value)
+                { applyId = ApplyId $ toString (apply_id value),
+                  projectId = ProjectId $ toString (project_id value),
+                  workerId = WorkerId $ toString (worker_id value)
                 },
             privateInfo =
               PrivateInfo
-                { nickname = Driver.SecondStageProjectApplicantDriver.name value
+                { nickname = name value
                 },
             profile = Profile "XXX"
           }

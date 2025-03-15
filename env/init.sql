@@ -35,6 +35,18 @@ CREATE TABLE project_applicants (
 
 ------------------------------------------------------
 
+CREATE TABLE project_applies (
+  apply_id UUID PRIMARY KEY,
+  applicant_id UUID REFERENCES users(user_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  project_id UUID REFERENCES projects(project_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  budget INT
+);
+
+
 CREATE TABLE project_status_histories (
   project_id UUID PRIMARY KEY
     REFERENCES projects(project_id)

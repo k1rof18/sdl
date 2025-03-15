@@ -8,7 +8,7 @@ import Control.Monad.IO.Class (MonadIO, liftIO)
 import Data.UUID (toString)
 import Domain.Client (ClientId (..))
 import Domain.Project (ProjectId (..))
-import Domain.ProjectApplicant (FirstStageProjectApplicant (..), PrivateInfo (..), ProjectApplicant (..), ProjectApplicantId (..))
+import Domain.ProjectApplicant (ApplyId (..), FirstStageProjectApplicant (..), PrivateInfo (..), ProjectApplicant (..))
 import Domain.Worker (WorkerId (..))
 import Driver.FirstStageProjectApplicantDriver (FirstStageProjectApplicantEntity (..), list)
 import Port.FirstStageProjectApplicantPort (FirstStageProjectApplicantPort (..))
@@ -28,7 +28,7 @@ instance (MonadIO m) => FirstStageProjectApplicantPort (FirstStageProjectApplica
         FirstStageProjectApplicant
           { projectApplicant =
               ProjectApplicant
-                { projectApplicantId = ProjectApplicantId $ toString (Driver.FirstStageProjectApplicantDriver.project_applicant_id value),
+                { applyId = ApplyId $ toString (Driver.FirstStageProjectApplicantDriver.apply_id value),
                   projectId = ProjectId $ toString (Driver.FirstStageProjectApplicantDriver.project_id value),
                   workerId = WorkerId $ toString (Driver.FirstStageProjectApplicantDriver.worker_id value)
                 },

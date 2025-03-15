@@ -8,7 +8,7 @@ import Control.Monad.IO.Class (MonadIO, liftIO)
 import Data.UUID (toString)
 import Domain.Client (ClientId (..))
 import Domain.Project (ProjectId (..))
-import Domain.ProjectApplicant (ProjectApplicant (..), ProjectApplicantId (..))
+import Domain.ProjectApplicant (ApplyId (..), ProjectApplicant (..))
 import Domain.Recruit (RecruitId (..))
 import Domain.Worker (WorkerId (..))
 import Driver.ProjectApplicantDriver (ProjectApplicantEntity (..), list)
@@ -24,7 +24,7 @@ instance (MonadIO m) => ProjectApplicantPort (ProjectApplicantGateway m) where
     where
       toDomain value =
         ProjectApplicant
-          { projectApplicantId = ProjectApplicantId $ toString (Driver.ProjectApplicantDriver.project_applicant_id value),
+          { applyId = ApplyId $ toString (Driver.ProjectApplicantDriver.apply_id value),
             projectId = ProjectId $ toString (Driver.ProjectApplicantDriver.project_id value),
             workerId = WorkerId $ toString (Driver.ProjectApplicantDriver.worker_id value)
           }
