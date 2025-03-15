@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
+
 module Domain.Recruit where
 
 import Domain.Client (ClientId)

@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
+
 module Domain.ProjectApplicant where
 
 import Data.Time.Calendar (Day)

@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
+
 module Domain.ApplyStageUser where
 
 import Data.Time.Calendar (Day (..), fromGregorian)
@@ -20,6 +22,7 @@ data ProjectInfo = ProjectInfo
     stage :: ProjectStage
   }
 
+toProjectUser :: UserAllInfo -> ProjectInfo -> StageUser
 toProjectUser userAllInfo projectInfo =
   case stage projectInfo of
     ApplyStage -> ApplyStageUser (workerId userAllInfo) (estimatedEndDate projectInfo)

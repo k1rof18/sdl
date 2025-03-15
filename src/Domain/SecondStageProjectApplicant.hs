@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
+
 module Domain.SecondStageProjectApplicant where
 
 import Domain.ProjectApplicant (PrivateInfo, Profile, ProjectApplicant)

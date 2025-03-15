@@ -1,5 +1,6 @@
 {-# LANGUAGE DeriveFunctor #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 
 module Gateway.SecondStageProjectApplicantGateway where
 
@@ -17,12 +18,10 @@ newtype SecondStageProjectApplicantGateway m a = SecondStageProjectApplicantGate
   deriving (Functor, Applicative, Monad, MonadIO)
 
 instance (MonadIO m) => SecondStageProjectApplicantPort (SecondStageProjectApplicantGateway m) where
-  list (ClientId client_id) (ProjectId project_id) = SecondStageProjectApplicantGateway $ do
+  list (ClientId c) (ProjectId p) = SecondStageProjectApplicantGateway $ do
     recruit <-
       liftIO $
-        Driver.SecondStageProjectApplicantDriver.list
-          client_id
-          project_id
+        Driver.SecondStageProjectApplicantDriver.list c p
 
     return $ map toDomain recruit
     where

@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
+
 module Domain.Client where
 
 newtype ClientId = ClientId String

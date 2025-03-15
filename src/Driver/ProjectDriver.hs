@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 
 module Driver.ProjectDriver where
 
-import Data.Maybe (listToMaybe)
 import Data.UUID (UUID)
 import Data.UUID.Orphans ()
 import Database.PostgreSQL.Simple
