@@ -2,13 +2,14 @@ CREATE DATABASE mydb;
 
 \c mydb;
 
-CREATE TABLE clients (
-  client_id UUID PRIMARY KEY
+CREATE TABLE users (
+	user_id UUID PRIMARY KEY,
+  name TEXT NOT NULL
 );
 
 CREATE TABLE recruits (
   recruit_id UUID PRIMARY KEY,
-  client_id UUID NOT NULL REFERENCES clients(client_id)
+  client_id UUID NOT NULL REFERENCES users(user_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
@@ -34,11 +35,6 @@ CREATE TABLE project_applicants (
 );
 
 ------------------------------------------------------
-
-CREATE TABLE users (
-	user_id UUID PRIMARY KEY,
-  name TEXT NOT NULL
-);
 
 CREATE TABLE project_status_histories (
   project_id UUID PRIMARY KEY
