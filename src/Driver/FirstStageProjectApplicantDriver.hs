@@ -15,20 +15,19 @@ data FirstStageProjectApplicantEntity = FirstStageProjectApplicantEntity
     worker_id :: UUID,
     project_id :: UUID,
     estimated_end_date :: Day,
-    name :: String,
-    birth_date :: Day
+    name :: String
   }
   deriving (Show)
 
 instance FromRow FirstStageProjectApplicantEntity where
-  fromRow = FirstStageProjectApplicantEntity <$> field <*> field <*> field <*> field <*> field <*> field
+  fromRow = FirstStageProjectApplicantEntity <$> field <*> field <*> field <*> field <*> field
 
 list :: String -> String -> IO [FirstStageProjectApplicantEntity]
 list cli_id rec_id = do
   connection <- conn
   query
     connection
-    "SELECT pw.project_applicant_id, pw.applicant_id, pw.project_id, pw.estimated_end_date, wp.name, wp.birth_date \
+    "SELECT pw.project_applicant_id, pw.applicant_id, pw.project_id, pw.estimated_end_date, wp.name \
     \ FROM project_applicants pw \
     \ INNER JOIN project_applicant_stage_histories fspa ON pw.project_applicant_id = fspa.apply_id \
     \ INNER JOIN recruits r ON r.recruit_id = pw.project_id \

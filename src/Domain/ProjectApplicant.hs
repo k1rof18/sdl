@@ -10,8 +10,7 @@ newtype ProjectApplicantId = ProjectApplicantId String
   deriving (Show, Eq, Ord)
 
 data PrivateInfo = PrivateInfo
-  { nickname :: String,
-    birthDay :: Day
+  { nickname :: String
   }
   deriving (Show, Eq)
 

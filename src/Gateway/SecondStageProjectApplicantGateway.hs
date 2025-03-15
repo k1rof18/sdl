@@ -1,6 +1,7 @@
 {-# LANGUAGE DeriveFunctor #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
+{-# OPTIONS_GHC -Wno-missing-fields #-}
 
 module Gateway.SecondStageProjectApplicantGateway where
 
@@ -36,8 +37,7 @@ instance (MonadIO m) => SecondStageProjectApplicantPort (SecondStageProjectAppli
                 },
             privateInfo =
               PrivateInfo
-                { nickname = Driver.SecondStageProjectApplicantDriver.name value,
-                  birthDay = Driver.SecondStageProjectApplicantDriver.birth_date value
+                { nickname = Driver.SecondStageProjectApplicantDriver.name value
                 },
             profile =
               Profile

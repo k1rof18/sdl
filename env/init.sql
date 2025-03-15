@@ -21,10 +21,6 @@ CREATE TABLE projects (
     PRIMARY KEY
 );
 
-CREATE TABLE workers (
-  worker_id UUID PRIMARY KEY
-);
-
 CREATE TABLE worker_privates (
   worker_id UUID PRIMARY KEY REFERENCES workers(worker_id)
     ON DELETE CASCADE
@@ -115,6 +111,15 @@ INSERT INTO worker_privates (worker_id, name, birth_date) VALUES
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b48', 'Hank', '1990-01-08'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b47', 'Ivy', '1990-01-09'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b46', 'Jack', '1990-01-10');
+
+-- CREATE TABLE workers (
+--   worker_id UUID PRIMARY KEY
+-- );
+
+CREATE TABLE users (
+	user_id UUID PRIMARY KEY,
+  name TEXT NOT NULL
+);
 
 CREATE TABLE project_status_histories (
   project_id UUID PRIMARY KEY

@@ -35,7 +35,6 @@ instance (MonadIO m) => FirstStageProjectApplicantPort (FirstStageProjectApplica
                 },
             privateInfo =
               PrivateInfo
-                { nickname = Driver.FirstStageProjectApplicantDriver.name value,
-                  birthDay = Driver.FirstStageProjectApplicantDriver.birth_date value
+                { nickname = Driver.FirstStageProjectApplicantDriver.name value
                 }
           }

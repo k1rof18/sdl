@@ -30,7 +30,7 @@ toProjectUser userAllInfo projectInfo =
       FirstStageUser
         (workerId userAllInfo)
         (estimatedEndDate projectInfo)
-        (PrivateInfo "nickname" (fromGregorian 2022 1 1))
+        (PrivateInfo "nickname")
 
 data StageUser
   = ApplyStageUser WorkerId Day
