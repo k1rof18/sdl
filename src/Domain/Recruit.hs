@@ -9,7 +9,6 @@ newtype RecruitId = RecruitId String
 
 data Recruit = Recruit
   { recruitId :: RecruitId,
-    title :: String,
     clientId :: ClientId
   }
   deriving (Show, Eq)

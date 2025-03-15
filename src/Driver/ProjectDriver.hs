@@ -18,5 +18,5 @@ instance FromRow ProjectEntity where
 list :: IO [ProjectEntity]
 list = do
   connection <- conn
-  result <- query_ connection "SELECT p.project_id, r.title, r.client_id FROM projects p JOIN recruits r ON p.project_id = r.recruit_id"
+  result <- query_ connection "SELECT p.project_id, p.title, r.client_id FROM projects p JOIN recruits r ON p.project_id = r.recruit_id"
   return result

@@ -8,17 +8,17 @@ CREATE TABLE clients (
 
 CREATE TABLE recruits (
   recruit_id UUID PRIMARY KEY,
-  title TEXT NOT NULL,
   client_id UUID NOT NULL REFERENCES clients(client_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
 
 CREATE TABLE projects (
-  project_id UUID REFERENCES recruits(recruit_id)
+  project_id UUID PRIMARY KEY
+    REFERENCES recruits(recruit_id)
     ON DELETE CASCADE
-    ON UPDATE CASCADE
-    PRIMARY KEY
+    ON UPDATE CASCADE,
+  title TEXT NOT NULL
 );
 
 CREATE TABLE project_applicants (

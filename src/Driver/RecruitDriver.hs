@@ -10,14 +10,14 @@ import Database.PostgreSQL.Simple
 import Database.PostgreSQL.Simple.FromRow
 import Driver.DB (conn)
 
-data RecruitEntity = RecruitEntity {recruit_id :: UUID, title :: String, client_id :: UUID}
+data RecruitEntity = RecruitEntity {recruit_id :: UUID, client_id :: UUID}
   deriving (Show)
 
 instance FromRow RecruitEntity where
-  fromRow = RecruitEntity <$> field <*> field <*> field
+  fromRow = RecruitEntity <$> field <*> field
 
 getById :: String -> IO (Maybe RecruitEntity)
 getById rec_id = do
   connection <- conn
-  result <- query connection "SELECT recruit_id, title, client_id FROM recruits WHERE recruit_id = ?" (Only rec_id) :: IO [RecruitEntity]
+  result <- query connection "SELECT recruit_id, client_id FROM recruits WHERE recruit_id = ?" (Only rec_id) :: IO [RecruitEntity]
   return $ listToMaybe result

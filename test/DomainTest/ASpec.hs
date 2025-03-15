@@ -25,7 +25,7 @@ spec = do
         userAllInfo =
           UserAllInfo
             { workerId = WorkerId "1",
-              privateInfo = PrivateInfo "nickname" (fromGregorian 2022 1 1)
+              privateInfo = PrivateInfo "nickname"
             }
 
     it "応募段階では、応募者のIDと完了予定日を閲覧できること" $ do
@@ -41,5 +41,5 @@ spec = do
           actual = toProjectUser userAllInfo (projectInfo FirstStage)
 
       let expected :: StageUser
-          expected = FirstStageUser (WorkerId "1") (fromGregorian 2022 1 1) (PrivateInfo "nickname" (fromGregorian 2022 1 1))
+          expected = FirstStageUser (WorkerId "1") (fromGregorian 2022 1 1) (PrivateInfo "nickname")
       expected `shouldBe` actual

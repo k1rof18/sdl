@@ -24,6 +24,5 @@ instance (MonadIO m) => RecruitPort (RecruitGateway m) where
           Just
             Recruit
               { recruitId = RecruitId $ toString (Driver.RecruitDriver.recruit_id value),
-                Domain.Recruit.title = Driver.RecruitDriver.title value,
                 clientId = ClientId $ toString (Driver.RecruitDriver.client_id value)
               }
