@@ -52,12 +52,6 @@ CREATE TABLE project_applicants (
   UNIQUE (applicant_id, project_id)
 );
 
-CREATE TABLE first_stage_projects (
-  project_id UUID PRIMARY KEY REFERENCES projects(project_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-);
-
 -- 以下はサンプルデータ
 INSERT INTO clients (client_id) VALUES
 ('CF71705D-DE27-40FE-9181-E190E0A65EB6'),
@@ -110,9 +104,6 @@ INSERT INTO project_applicants (project_applicant_id, applicant_id, project_id, 
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4d', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4d', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4d', '2021-12-31'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4c', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4c', 'f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4c', '2021-12-31');
 
-INSERT INTO first_stage_projects (project_id) VALUES
-('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f');
-
 INSERT INTO worker_privates (worker_id, name, birth_date) VALUES
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f', 'Alice', '1990-01-01'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4e', 'Bob', '1990-01-02'),
@@ -125,6 +116,14 @@ INSERT INTO worker_privates (worker_id, name, birth_date) VALUES
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b47', 'Ivy', '1990-01-09'),
 ('f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b46', 'Jack', '1990-01-10');
 
+CREATE TABLE project_status_histories (
+  project_id UUID PRIMARY KEY
+    REFERENCES projects(project_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  stage recruit_stage NOT NULL DEFAULT 'apply',
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
 CREATE TABLE project_applicant_stage_histories (
   apply_id UUID PRIMARY KEY
