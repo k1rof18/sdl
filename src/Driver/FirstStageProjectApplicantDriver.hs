@@ -30,7 +30,7 @@ list cli_id rec_id = do
     connection
     "SELECT pw.project_applicant_id, pw.applicant_id, pw.project_id, pw.estimated_end_date, wp.name, wp.birth_date \
     \ FROM project_applicants pw \
-    \ INNER JOIN first_stage_project_applicants fspa ON pw.project_applicant_id = fspa.project_applicant_id \
+    \ INNER JOIN project_applicant_stage_histories fspa ON pw.project_applicant_id = fspa.apply_id \
     \ INNER JOIN recruits r ON r.recruit_id = pw.project_id \
     \ INNER JOIN worker_privates wp ON wp.worker_id = pw.applicant_id \
     \ WHERE r.client_id = ? AND pw.project_id = ?"
