@@ -23,14 +23,14 @@ data Stage
   deriving (Show, Eq)
 
 data ProjectWorkerInFlow
-  = ApplyStageWorker {w_id :: WorkerId}
-  | FirstStageWorker {w_id :: WorkerId, w_name :: String}
+  = ApplyStageWorker {workerId :: WorkerId}
+  | FirstStageWorker {workerId :: WorkerId, name :: String}
   deriving (Show, Eq)
 
 data ProjectWorker = ProjectWorker
   { _workerId :: WorkerId,
     _projectId :: ProjectId,
-    _worker_name :: String,
+    _workerName :: String,
     _budget :: Int,
     _stage :: Stage
   }
@@ -40,4 +40,4 @@ toProjectWorkerInFlow :: ProjectWorker -> ProjectWorkerInFlow
 toProjectWorkerInFlow wk =
   case _stage wk of
     ApplyStage -> ApplyStageWorker (_workerId wk)
-    FirstStage -> FirstStageWorker (_workerId wk) (_worker_name wk)
+    FirstStage -> FirstStageWorker (_workerId wk) (_workerName wk)

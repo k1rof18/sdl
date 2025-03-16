@@ -23,7 +23,7 @@ instance (MonadIO m) => ProjectWorkerPort (ProjectWorkerGateway m) where
         ProjectWorker
           { _workerId = WorkerId $ toString $ worker_id value,
             _projectId = ProjectId recruit_id,
-            _worker_name = user_name value,
+            _workerName = user_name value,
             _budget = budget value,
             _stage = FirstStage
           }
