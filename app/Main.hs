@@ -6,11 +6,13 @@ import Domain.Recruit (RecruitId (..))
 import Gateway.FirstStageProjectApplicantGateway (FirstStageProjectApplicantGateway (..), runFirstStageProjectApplicantGateway)
 import Gateway.ProjectApplicantGateway (ProjectApplicantGateway (..), runProjectApplicantGateway)
 import Gateway.ProjectGateway (ProjectGateway (..), runProjectGateway)
+import Gateway.ProjectWorkerGateway (ProjectWorkerGateway (..), runProjectWorkerGateway)
 import Gateway.RecruitGateway (RecruitGateway (..), runRecruitGateway)
 import Gateway.SecondStageProjectApplicantGateway (SecondStageProjectApplicantGateway (..), runSecondStageProjectApplicantGateway)
 import UseCase.GetRecruit (exec)
 import UseCase.ListFirstStageProjectApplicants (exec)
 import UseCase.ListProjectApplicants (exec)
+import UseCase.ListProjectWorkers (exec)
 import UseCase.ListProjects (exec)
 import UseCase.ListSecondStageProjectApplicants (exec)
 
@@ -34,6 +36,12 @@ listProjectApplicant clientId recruitId = do
   mapM_ print result
   print "========================"
 
+listProjectWorker :: String -> String -> IO ()
+listProjectWorker clientId recruitId = do
+  result <- runProjectWorkerGateway $ UseCase.ListProjectWorkers.exec (ClientId clientId) (RecruitId recruitId)
+  mapM_ print result
+  print "!!!!!!!!!!!!!!!"
+
 listFirstStageProjectApplicants :: String -> String -> IO ()
 listFirstStageProjectApplicants clientId projectId = do
   result <- runFirstStageProjectApplicantGateway $ UseCase.ListFirstStageProjectApplicants.exec (ClientId clientId) (ProjectId projectId)
@@ -55,3 +63,5 @@ main = do
   listProjectApplicant "cf71705d-de27-40fe-9181-e190e0a65eb6" "f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f"
   listFirstStageProjectApplicants "cf71705d-de27-40fe-9181-e190e0a65eb6" "f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f"
   listSecondStageProjectApplicants "cf71705d-de27-40fe-9181-e190e0a65eb6" "f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f"
+
+  listProjectWorker "cf71705d-de27-40fe-9181-e190e0a65eb6" "f47b1b3e-7f3b-4b0b-8b3d-3b1b1f3b7b4f"

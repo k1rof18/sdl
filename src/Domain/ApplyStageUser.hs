@@ -2,7 +2,7 @@
 
 module Domain.ApplyStageUser where
 
-import Data.Time.Calendar (Day (..), fromGregorian)
+import Data.Time.Calendar (Day (..))
 import Domain.ProjectApplicant (PrivateInfo (..))
 import Domain.Worker (WorkerId)
 

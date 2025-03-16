@@ -22,19 +22,6 @@ CREATE TABLE projects (
   title TEXT NOT NULL
 );
 
-CREATE TABLE project_applicants (
-  project_applicant_id UUID PRIMARY KEY,
-  applicant_id UUID REFERENCES users(user_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  project_id UUID REFERENCES projects(project_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  UNIQUE (applicant_id, project_id)
-);
-
-------------------------------------------------------
-
 CREATE TABLE project_applies (
   apply_id UUID PRIMARY KEY,
   applicant_id UUID REFERENCES users(user_id)
@@ -46,23 +33,22 @@ CREATE TABLE project_applies (
   budget INT
 );
 
-
 CREATE TABLE project_status_histories (
-  project_id UUID PRIMARY KEY
+  project_id UUID
     REFERENCES projects(project_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  stage recruit_stage NOT NULL DEFAULT 'apply',
+  stage RecruitStage NOT NULL DEFAULT 'apply',
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE project_applicant_stage_histories (
-  apply_id UUID PRIMARY KEY
-    REFERENCES project_applicants(project_applicant_id)
+  apply_id UUID
+    REFERENCES project_applies(apply_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  stage recruit_stage NOT NULL DEFAULT 'apply',
+  stage RecruitStage NOT NULL DEFAULT 'apply',
   staged_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TYPE recruit_stage AS ENUM ('apply', 'first', 'second');
+CREATE TYPE RecruitStage AS ENUM ('apply', 'first', 'second');
