@@ -21,6 +21,7 @@ instance (MonadIO m) => RecruitPort (RecruitGateway m) where
     where
       toDomain value =
         Recruit
-          { title = _title value,
+          { recruitId = toString $ _recruit_id value,
+            title = _title value,
             recruitType = toRecruitType (_recruitType value)
           }

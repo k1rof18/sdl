@@ -11,7 +11,8 @@ toRecruitType "competition" = Competition
 toRecruitType _ = error "Unknown recruit type"
 
 data Recruit = Recruit
-  { title :: String,
+  { recruitId :: String,
+    title :: String,
     recruitType :: RecruitType
   }
   deriving (Show, Eq)
