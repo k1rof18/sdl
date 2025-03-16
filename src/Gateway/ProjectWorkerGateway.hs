@@ -7,7 +7,8 @@ module Gateway.ProjectWorkerGateway where
 
 import Control.Monad.IO.Class (MonadIO, liftIO)
 import Data.UUID (toString)
-import Domain.ProjectWorker (ClientId (..), ProjectId (..), ProjectWorker (..), Stage (..), WorkerId (..))
+import Domain.ProjectWorker (ClientId (..), ProjectId (..), ProjectWorker (..), WorkerId (..))
+import Domain.Stage (Stage (FirstStage))
 import Driver.ProjectWorkerDriver (ProjectWorkerDriverEntity (..), list)
 import Port.ProjectWorkerPort (ProjectWorkerPort (..))
 
@@ -25,5 +26,5 @@ instance (MonadIO m) => ProjectWorkerPort (ProjectWorkerGateway m) where
             _projectId = ProjectId recruit_id,
             _workerName = user_name value,
             _budget = budget value,
-            _stage = FirstStage
+            _stage = FirstStage -- TODO: Implement this
           }

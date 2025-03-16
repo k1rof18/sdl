@@ -4,23 +4,19 @@ module Domain.ProjectWorker
   ( ProjectId (..),
     WorkerId (..),
     ClientId (..),
-    Stage (..),
     ProjectWorkerInFlow (..),
     ProjectWorker (..),
     toProjectWorkerInFlow,
   )
 where
 
+import Domain.Stage (Stage (..))
+
 newtype ProjectId = ProjectId String deriving (Show, Eq)
 
 newtype WorkerId = WorkerId String deriving (Show, Eq)
 
 newtype ClientId = ClientId String deriving (Show, Eq)
-
-data Stage
-  = ApplyStage
-  | FirstStage
-  deriving (Show, Eq)
 
 data ProjectWorkerInFlow
   = ApplyStageWorker {workerId :: WorkerId}

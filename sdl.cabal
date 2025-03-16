@@ -19,6 +19,8 @@ library
   hs-source-dirs:      src
   exposed-modules:
     Driver.DB
+
+    Domain.Stage
     
     Driver.ProjectWorkerDriver
     Gateway.ProjectWorkerGateway
