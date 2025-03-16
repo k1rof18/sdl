@@ -19,11 +19,18 @@ library
   hs-source-dirs:      src
   exposed-modules:
     Driver.DB
+    
+    Driver.ProjectWorkerDriver
+    Gateway.ProjectWorkerGateway
     Domain.ProjectWorker
     Port.ProjectWorkerPort
-    Gateway.ProjectWorkerGateway
     UseCase.ListProjectWorkers
-    Driver.ProjectWorkerDriver
+
+    Driver.RecruitDriver
+    Gateway.RecruitGateway
+    Domain.Recruit
+    Port.RecruitPort
+    UseCase.ListRecruits
   build-depends:
     base >= 4.7 && < 5
     , mtl
