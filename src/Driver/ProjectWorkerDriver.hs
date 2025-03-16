@@ -5,35 +5,15 @@
 
 module Driver.ProjectWorkerDriver where
 
-import Data.ByteString.Char8 (unpack)
 import Data.UUID (UUID)
-import Data.UUID.Orphans ()
 import Database.PostgreSQL.Simple
-import Database.PostgreSQL.Simple.FromField
 import Database.PostgreSQL.Simple.FromRow
 import Driver.DB (conn)
-
-data RecruitStage = Apply | First | Second
-  deriving (Show, Eq)
-
-instance FromField RecruitStage where
-  fromField f mdata = do
-    -- recruit_stage型か確認
-    tn <- typename f
-    if tn == "recruit_stage"
-      then case mdata of
-        Just bs -> case unpack bs of
-          "apply" -> pure Apply
-          "first" -> pure First
-          "second" -> pure Second
-          _ -> returnError ConversionFailed f "Invalid recruit stage"
-        Nothing -> returnError UnexpectedNull f "Expected a recruit_stage, but got NULL"
-      else returnError Incompatible f "Expected recruit_stage type"
 
 data ProjectWorkerDriverEntity = ProjectWorkerDriverEntity
   { worker_id :: UUID,
     budget :: Int,
-    project_stage :: RecruitStage,
+    project_stage :: String,
     user_name :: String
   }
   deriving (Show)
@@ -46,7 +26,7 @@ list cli_id rec_id = do
   connection <- conn
   query
     connection
-    "SELECT pa.applicant_id as worker_id, pa.budget, ls.stage as project_stage, u.name as user_name \
+    "SELECT pa.applicant_id as worker_id, pa.budget, CAST(ls.stage AS TEXT) AS project_stage, u.name as user_name \
     \ FROM project_applies pa \
     \ join users u on u.user_id = pa.applicant_id \
     \ JOIN ( \
