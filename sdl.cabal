@@ -38,19 +38,7 @@ library
     UseCase.ListProjectApplicants
     Driver.ProjectApplicantDriver
 
-    Port.FirstStageProjectApplicantPort
-    Gateway.FirstStageProjectApplicantGateway
-    UseCase.ListFirstStageProjectApplicants
-    Driver.FirstStageProjectApplicantDriver
-
     Domain.Worker
-
-    Domain.SecondStageProjectApplicant
-    Port.SecondStageProjectApplicantPort
-    Gateway.SecondStageProjectApplicantGateway
-    UseCase.ListSecondStageProjectApplicants
-    Driver.SecondStageProjectApplicantDriver
-
     Domain.ApplyStageUser
 
     Domain.ProjectWorker
