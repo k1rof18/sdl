@@ -1,4 +1,4 @@
-module UseCase.ListProjectWorkers where
+module UseCase.ListProjectWorkers (exec) where
 
 import Domain.ProjectWorker (ClientId, ProjectId, ProjectWorkerInFlow, toProjectWorkerInFlow)
 import Port.ProjectWorkerPort (ProjectWorkerPort (..))

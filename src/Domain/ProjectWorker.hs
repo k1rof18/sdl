@@ -1,4 +1,15 @@
-module Domain.ProjectWorker where
+{-# OPTIONS_GHC -Wno-partial-fields #-}
+
+module Domain.ProjectWorker
+  ( ProjectId (..),
+    WorkerId (..),
+    ClientId (..),
+    Stage (..),
+    ProjectWorkerInFlow (..),
+    ProjectWorker (..),
+    toProjectWorkerInFlow,
+  )
+where
 
 newtype ProjectId = ProjectId String deriving (Show, Eq)
 

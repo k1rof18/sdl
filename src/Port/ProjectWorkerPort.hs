@@ -1,4 +1,4 @@
-module Port.ProjectWorkerPort where
+module Port.ProjectWorkerPort (ProjectWorkerPort, list) where
 
 import Domain.ProjectWorker (ClientId, ProjectId, ProjectWorker)
 
