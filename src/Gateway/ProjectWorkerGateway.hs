@@ -7,11 +7,7 @@ module Gateway.ProjectWorkerGateway where
 
 import Control.Monad.IO.Class (MonadIO, liftIO)
 import Data.UUID (toString)
-import Domain.Client (ClientId (..))
-import Domain.Project (ProjectId (..))
-import Domain.ProjectWorker (ProjectWorker (..), Stage (..))
-import Domain.Recruit (RecruitId (..))
-import Domain.Worker (WorkerId (..))
+import Domain.ProjectWorker (ClientId (..), ProjectId (..), ProjectWorker (..), Stage (..), WorkerId (..))
 import Driver.ProjectWorkerDriver (ProjectWorkerDriverEntity (..), list)
 import Port.ProjectWorkerPort (ProjectWorkerPort (..))
 
@@ -19,7 +15,7 @@ newtype ProjectWorkerGateway m a = ProjectWorkerGateway {runProjectWorkerGateway
   deriving (Functor, Applicative, Monad, MonadIO)
 
 instance (MonadIO m) => ProjectWorkerPort (ProjectWorkerGateway m) where
-  list (ClientId client_id) (RecruitId recruit_id) = ProjectWorkerGateway $ do
+  list (ClientId client_id) (ProjectId recruit_id) = ProjectWorkerGateway $ do
     recruit <- liftIO $ Driver.ProjectWorkerDriver.list client_id recruit_id
     return $ map toDomain recruit
     where

@@ -6,7 +6,6 @@
 module Driver.ProjectWorkerDriver where
 
 import Data.ByteString.Char8 (unpack)
-import Data.Text (Text, pack)
 import Data.UUID (UUID)
 import Data.UUID.Orphans ()
 import Database.PostgreSQL.Simple

@@ -1,7 +1,10 @@
 module Domain.ProjectWorker where
 
-import Domain.Project (ProjectId)
-import Domain.Worker (WorkerId)
+newtype ProjectId = ProjectId String deriving (Show, Eq)
+
+newtype WorkerId = WorkerId String deriving (Show, Eq)
+
+newtype ClientId = ClientId String deriving (Show, Eq)
 
 data Stage
   = ApplyStage

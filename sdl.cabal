@@ -19,28 +19,6 @@ library
   hs-source-dirs:      src
   exposed-modules:
     Driver.DB
-    Domain.Client
-    Domain.Recruit
-    Port.RecruitPort
-    Gateway.RecruitGateway
-    UseCase.GetRecruit
-    Driver.RecruitDriver
-
-    Domain.Project
-    Port.ProjectPort
-    Gateway.ProjectGateway
-    UseCase.ListProjects
-    Driver.ProjectDriver
-
-    Domain.ProjectApplicant
-    Port.ProjectApplicantPort
-    Gateway.ProjectApplicantGateway
-    UseCase.ListProjectApplicants
-    Driver.ProjectApplicantDriver
-
-    Domain.Worker
-    Domain.ApplyStageUser
-
     Domain.ProjectWorker
     Port.ProjectWorkerPort
     Gateway.ProjectWorkerGateway
@@ -92,8 +70,6 @@ test-suite sdl-test
   hs-source-dirs:      test
   main-is:             Spec.hs
   other-modules:
-    UseCaseTest.GetRecruitSpec
-    DomainTest.ASpec
   build-depends:       base
                      , sdl
                      , hspec
